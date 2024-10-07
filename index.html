@@ -112,8 +112,11 @@
         flex-direction: column;
         width: 100%;
         position: absolute;
+        background: rgba(51, 51, 51, 0.9); /* Popup background */
         top: 60px; /* Adjust based on header height */
         left: 0;
+        z-index: 1000; /* Ensure the menu appears above other elements */
+        padding: 10px 0; /* Add padding to the menu */
     }
 
     ul.active {
@@ -122,10 +125,13 @@
 
     .hamburger {
         display: block; /* Show hamburger icon */
+        margin-left: auto; /* Push hamburger to the right */
     }
 
-    ul {
-        display: flex; /* Show links in a row on wider screens */
+    /* Override default flex styles on mobile */
+    nav {
+        flex-direction: row; /* Keep items in a row */
+        justify-content: space-between;
     }
 }
         .hero {
