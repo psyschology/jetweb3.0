@@ -133,26 +133,27 @@
         display: flex; /* Show menu when active */
     }
 
-    ul li {
-        margin: 10px 0; /* Space items vertically */
-        background: rgba(255, 255, 255, 0.1); /* Background for items */
-        border-radius: 5px; /* Rounded corners */
-        width: 80%; /* Control the width of the items */
-        text-align: center; /* Center text */
-    }
+ul li {
+    margin: 10px 0; /* Space items vertically */
+    background: black; /* Black background for items */
+    border-radius: 5px; /* Rounded corners */
+    width: 80%; /* Control the width of the items */
+    text-align: center; /* Center text */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Add some shadow for depth */
+}
 
-    ul li a {
-        color: white;
-        text-decoration: none;
-        padding: 15px; /* Add padding for clickable area */
-        display: block; /* Make the link a block element */
-        transition: background 0.3s; /* Smooth background transition */
-    }
+ul li a {
+    color: white; /* White text color */
+    text-decoration: none; /* No underline */
+    padding: 15px; /* Add padding for clickable area */
+    display: block; /* Make the link a block element */
+    transition: background 0.3s; /* Smooth background transition */
+}
 
-    /* Optional: Hover effect */
-    ul li a:hover {
-        background: rgba(255, 255, 255, 0.2); /* Highlight on hover */
-    }
+/* Optional: Hover effect */
+ul li a:hover {
+    background: rgba(255, 255, 255, 0.2); /* Highlight on hover */
+}
 }
         .hero {
             height: 100vh;
