@@ -554,12 +554,11 @@
 
     <div class="content-wrapper">
         <header>
-            <nav>
                 <div class="logo-container">
                     <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Designer%20(2)-j269MHduOgkFipCDISdlCrodAU2qSC.png" alt="Jetweb Labs Logo" class="logo">
                 </div>
                     <div class="hamburger" id="hamburger">&#9776;</div>
-                
+                <nav>
                 <ul id="nav-links">
                     <li><a href="#home">Home</a></li>
                     <li><a href="#about">About</a></li>
@@ -935,7 +934,8 @@ const hamburger = document.getElementById('hamburger');
 const navLinks = document.getElementById('nav-links');
 
 // Toggle the active class on click
-hamburger.addEventListener('click', function() {
+hamburger.addEventListener('click', function(event) {
+    event.stopPropagation(); // Prevent the click from bubbling up to the document
     navLinks.classList.toggle('active'); // Toggle the 'active' class to show/hide the menu
 });
 
