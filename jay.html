@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jetweb Labs: Your All-In-One IT Buddy | Innovative Tech Solutions in India</title>
+    <meta name="description" content="Jetweb Labs offers cutting-edge IT solutions including app development, web services, AI, cloud computing, and digital marketing. Your premier tech partner in India.">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <style>
+        :root {
+            --gradient-start: #000000;
+            --gradient-end: #4a0e8f;
+            --accent-color: #ff3366;
+            --text-color: #ffffff;
+            --text-color-muted: #b3b3b3;
+            --bg-color: #0a0a0a;
+            --card-bg: rgba(255, 255, 255, 0.05);
+        }
+
+        .light-mode {
+            --gradient-start: #f0f0f0;
+            --gradient-end: #d8c8ff;
+            --text-color: #333333;
+            --text-color-muted: #666666;
+            --bg-color: #ffffff;
+            --card-bg: rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Orbitron', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+            min-height: 100vh;
+            transition: all 0.3s ease;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+        }
+
+        .logo {
+            width: 120px;
+            height: auto;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            right: 0;
+            bottom: 0;
+            background: url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Designer%20(2)-j269MHduOgkFipCDISdlCrodAU2qSC.png') no-repeat center center/cover;
+            opacity: 0.2;
+            transform: translate(-50%, -50%) scale(1);
+            width: 100%;
+            height: 100%;
+            animation: pulse 10s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { transform: translate(-50%, -50%) scale(1); }
+            100% { transform: translate(-50%, -50%) scale(1.1); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: var(--text-color-muted);
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--accent-color);
+            color: var(--text-color);
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            background: #ff1a4f;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 51, 102, 0.3);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: var(--accent-color);
+            margin: 1rem auto 0;
+        }
+
+        .services, .technologies {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .service, .technology {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .service:hover, .technology:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .service i, .technology i {
+            font-size: 3rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .testimonials {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .testimonial:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .testimonial img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: auto;
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 15px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 5px;
+            color: var(--text-color);
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder {
+            color: var(--text-color-muted);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            background: rgba(0, 0, 0, 0.5);
+            margin-top: 4rem;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1001;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+
+        .modal-content {
+            background-color: var(--bg-color);
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 15px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: var(--text-color);
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        #mode-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: var(--accent-color);
+            color: var(--text-color);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        #mode-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 1000;
+            background: #25D366;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .social-preview {
+            max-width: 100%;
+            height: auto;
+            margin-top: 2rem;
+        }
+
+        .footer-logo {
+            width: 100px;
+            height: auto;
+            margin-bottom: 1rem;
+        }
+
+        .hidden-tech {
+            display: none;
+        }
+
+        #view-all-tech {
+            margin-top: 2rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            nav ul {
+                display: none;
+            }
+
+            .services, .technologies {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Opening Animation */
+        .opening-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-start);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 1;
+            transition: opacity 1s ease-out;
+        }
+
+        .opening-logo {
+            width: 200px;
+            height: auto;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .opening-text {
+            font-size: 2rem;
+            color: var(--text-color);
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .content-wrapper {
+            opacity: 0;
+            transition: opacity 1s ease-out;
+        }
+
+        /* Parallax effect */
+        .parallax-section {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .parallax-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 120%;
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <div class="opening-animation">
+        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Designer%20(2)-j269MHduOgkFipCDISdlCrodAU2qSC.png" alt="Jetweb Labs Logo" class="opening-logo">
+        <div class="opening-text">
+            Jetweb Labs<br>
+            Your All-In-One IT Buddy
+        </div>
+    </div>
+
+    <div class="content-wrapper">
+        <header>
+            <nav>
+                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Designer%20(2)-j269MHduOgkFipCDISdlCrodAU2qSC.png" alt="Jetweb Labs Logo" class="logo">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#technologies">Technologies</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <section id="home" class="hero parallax-section">
+                <div class="parallax-bg"></div>
+                <div class="hero-content">
+                    <h1>Jetweb Labs: Your All-In-One IT Buddy</h1>
+                    <p>Propelling businesses into the digital future 🚀</p>
+                    <a href="#contact" class="btn">Launch Your Project 🛸</a>
+                </div>
+            </section>
+
+            <section id="about" class="container parallax-section">
+                <div class="parallax-bg"></div>
+                <h2 class="section-title">About Us 🌟</h2>
+                <p>At Jetweb Labs, we're not just another IT company. We're your partners in digital transformation. Based in the heart of India's tech hub, we bring together the brightest minds and cutting-edge technologies to deliver solutions that don't just meet your needs – they exceed your expectations. Our mission is to empower businesses across India with the tools they need to thrive in the digital age.</p>
+            </section>
+
+            <section id="services" class="container parallax-section">
+                <div class="parallax-bg"></div>
+                <h2 class="section-title">Our Stellar Services 🌟</h2>
+                <div class="services">
+                    <div class="service" onclick="openModal('app-dev')">
+                        <i class="fas fa-mobile-alt"></i>
+                        <h3>App Development</h3>
+                        <p>Cutting-edge mobile solutions</p>
+                    </div>
+                    <div class="service" onclick="openModal('web-dev')">
+                        <i class="fas fa-laptop-code"></i>
+                        <h3>Web Development</h3>
+                        <p>Responsive and dynamic web apps</p>
+                    </div>
+                    <div class="service" onclick="openModal('digital-marketing')">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Digital Marketing</h3>
+                        <p>Boost your online presence</p>
+                    </div>
+                    <div class="service" onclick="openModal('it-consulting')">
+                        <i class="fas fa-users-cog"></i>
+                        <h3>IT Consulting</h3>
+                        <p>Expert tech guidance</p>
+                    </div>
+                    <div class="service" onclick="openModal('cloud-solutions')">
+                        <i class="fas fa-cloud"></i>
+                        <h3>Cloud Solutions</h3>
+                        <p>Scalable and secure infrastructure</p>
+                    </div>
+                    <div class="service" onclick="openModal('ai-integration')">
+                        <i class="fas fa-robot"></i>
+                        <h3>AI Integration</h3>
+                        <p>Intelligent systems for your business</p>
+                    </div>
+                    <div class="service" onclick="openModal('cybersecurity')">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>Cybersecurity</h3>
+                        <p>Protect your digital assets</p>
+                    </div>
+                    <div class="service" onclick="openModal('data-analytics')">
+                        <i class="fas fa-database"></i>
+                        <h3>Data Analytics</h3>
+                        <p>Turn data into insights</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="technologies" class="container parallax-section">
+                <div class="parallax-bg"></div>
+                <h2 class="section-title">Technologies We Use 💻</h2>
+                <div class="technologies">
+                    <div class="technology">
+                        <i class="fab fa-react"></i>
+                        <h3>React</h3>
+                    </div>
+                    <div class="technology">
+                        <i class="fab fa-node-js"></i>
+                        <h3>Node.js</h3>
+                    </div>
+                    <div class="technology">
+                        <i class="fab fa-python"></i>
+                        <h3>Python</h3>
+                    </div>
+                    <div class="technology">
+                        <i class="fab fa-aws"></i>
+                        <h3>AWS</h3>
+                    </div>
+                    <div class="technology hidden-tech">
+                        <i class="fab fa-docker"></i>
+                        <h3>Docker</h3>
+                    </div>
+                    <div class="technology hidden-tech">
+                        <i class="fab fa-android"></i>
+                        <h3>Android</h3>
+                    </div>
+                    <div class="technology hidden-tech">
+                        <i class="fab fa-apple"></i>
+                        <h3>iOS</h3>
+                    </div>
+                    <div class="technology hidden-tech">
+                        <i class="fas fa-database"></i>
+                        <h3>MongoDB</h3>
+                    </div>
+                    <div class="technology hidden-tech">
+                        <i class="fab fa-angular"></i>
+                        <h3>Angular</h3>
+                    </div>
+                    <div class="technology hidden-tech">
+                        <i class="fab fa-vuejs"></i>
+                        <h3>Vue.js</h3>
+                    </div>
+                    <div class="technology hidden-tech">
+                        <i class="fab fa-java"></i>
+                        <h3>Java</h3>
+                    </div>
+                    <div class="technology hidden-tech">
+                        <i class="fab fa-php"></i>
+                        <h3>PHP</h3>
+                    </div>
+                </div>
+                <div id="view-all-tech" class="btn">View All Technologies</div>
+            </section>
+
+            <section id="testimonials" class="container parallax-section">
+                <div class="parallax-bg"></div>
+                <h2 class="section-title">Client Success Stories 🏆</h2>
+                <div class="testimonials">
+                    <div class="testimonial" onclick="openModal('testimonial1')">
+                        <img src="/placeholder.svg" alt="Client 1">
+                        <h3>TechGiant Corp</h3>
+                        <p>"Jetweb Labs transformed our operations..."</p>
+                    </div>
+                    <div class="testimonial" onclick="openModal('testimonial2')">
+                        <img src="/placeholder.svg" alt="Client 2">
+                        <h3>InnovateTech Solutions</h3>
+                        <p>"Their AI integration was a game-changer..."</p>
+                    </div>
+                    <div class="testimonial" onclick="openModal('testimonial3')">
+                        <img src="/placeholder.svg" alt="Client 3">
+                        <h3>FutureFin Ltd</h3>
+                        <p>"The cloud migration was seamless..."</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="contact" class="container parallax-section">
+                <div class="parallax-bg"></div>
+                <h2 class="section-title">Ready for Liftoff? 🚀</h2>
+                <form class="contact-form">
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Your Email" required>
+                    <textarea placeholder="Tell us about your project" required></textarea>
+                    <button type="submit" class="btn">Send Message 📤</button>
+                </form>
+            </section>
+        </main>
+
+        <footer>
+            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Designer%20(2)-j269MHduOgkFipCDISdlCrodAU2qSC.png" alt="Jetweb Labs Logo" class="footer-logo">
+            <p>&copy; 2024 Jetweb Labs. Innovating for a brighter future. 🌠</p>
+            <img src="/placeholder.svg" alt="Jetweb Labs Social Preview" class="social-preview">
+        </footer>
+
+        <button id="mode-toggle">🌓</button>
+        <a href="https://wa.me/1234567890" class="whatsapp-btn" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+
+        <!-- Modals -->
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2 id="modal-title"></h2>
+                <p id="modal-description"></p>
+                <div id="modal-buttons"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Opening animation
+        const openingLogo = document.querySelector('.opening-logo');
+        const openingText = document.querySelector('.opening-text');
+        const contentWrapper = document.querySelector('.content-wrapper');
+        const headerLogo = document.querySelector('nav .logo');
+
+        gsap.to(openingLogo, { opacity: 1, y: 0, duration: 1, delay: 0.5 });
+        gsap.to(openingText, { opacity: 1, y: 0, duration: 1, delay: 1 });
+
+        gsap.to('.opening-animation', {
+            opacity: 0,
+            duration: 1,
+            delay: 3,
+            onComplete: () => {
+                document.querySelector('.opening-animation').style.display = 'none';
+                contentWrapper.style.opacity = 1;
+            }
+        });
+
+        gsap.fromTo(openingLogo, 
+            { x: 0, y: 0, scale: 1 },
+            { 
+                x: () => -(window.innerWidth / 2 - headerLogo.offsetWidth / 2 - headerLogo.offsetLeft),
+                y: () => -(window.innerHeight / 2 - headerLogo.offsetHeight / 2 - headerLogo.offsetTop),
+                scale: 0.6,
+                duration: 1,
+                delay: 3,
+                ease: "power2.inOut"
+            }
+        );
+
+        // Parallax effect
+        gsap.utils.toArray('.parallax-section').forEach((section, i) => {
+            const bg = section.querySelector('.parallax-bg');
+            
+            gsap.fromTo(bg, {
+                backgroundPosition: () => i % 2 ? 
+                    `50% ${-window.innerHeight / 2}px` :
+                    `50% ${window.innerHeight / 2}px`
+            }, {
+                backgroundPosition: () => i % 2 ? 
+                    `50% ${window.innerHeight / 2}px` :
+                    `50% ${-window.innerHeight / 2}px`,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: section,
+                    scrub: true
+                }
+            });
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Dark/Light mode toggle
+        const modeToggle = document.getElementById('mode-toggle');
+        modeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            modeToggle.textContent = document.body.classList.contains('light-mode') ? '🌙' : '☀️';
+        });
+
+        // Modal functionality
+        const modal = document.getElementById('modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalDescription = document.getElementById('modal-description');
+        const modalButtons = document.getElementById('modal-buttons');
+        const closeBtn = document.getElementsByClassName('close')[0];
+
+        function openModal(id) {
+            modal.style.display = 'block';
+            modalButtons.innerHTML = '';
+            switch(id) {
+                case 'app-dev':
+                    modalTitle.textContent = 'App Development 📱';
+                    modalDescription.textContent = 'We create cutting-edge mobile applications for iOS and Android platforms. Our team of expert developers ensures your app is not just functional, but also user-friendly and scalable.';
+                    modalButtons.innerHTML = '<a href="https://wa.me/1234567890" class="btn" target="_blank">WhatsApp Us Now</a>';
+                    break;
+                case 'web-dev':
+                    modalTitle.textContent = 'Web Development 💻';
+                    modalDescription.textContent = 'From responsive websites to complex web applications, we deliver solutions that are both visually appealing and highly functional. We use the latest technologies to ensure your web presence stands out.';
+                    modalButtons.innerHTML = '<a href="https://wa.me/1234567890" class="btn" target="_blank">WhatsApp Us Now</a>';
+                    break;
+                case 'digital-marketing':
+                    modalTitle.textContent = 'Digital Marketing 📈';
+                    modalDescription.textContent = 'Our digital marketing strategies are designed to boost your online presence and drive results. We offer SEO, content marketing, social media management, and PPC campaigns tailored to your business goals.';
+                    modalButtons.innerHTML = '<a href="https://wa.me/1234567890" class="btn" target="_blank">WhatsApp Us Now</a>';
+                    break;
+                case 'it-consulting':
+                    modalTitle.textContent = 'IT Consulting 🤝';
+                    modalDescription.textContent = 'Our IT consulting services provide expert guidance on technology decisions. We help you align your IT strategy with your business objectives, ensuring you stay ahead in the digital landscape.';
+                    modalButtons.innerHTML = '<a href="https://wa.me/1234567890" class="btn" target="_blank">WhatsApp Us Now</a>';
+                    break;
+                case 'cloud-solutions':
+                    modalTitle.textContent = 'Cloud Solutions ☁️';
+                    modalDescription.textContent = 'We offer scalable and secure cloud infrastructure solutions. Whether you are looking to migrate to the cloud or optimize your existing cloud setup, we have got you covered.';
+                    modalButtons.innerHTML = '<a href="https://wa.me/1234567890" class="btn" target="_blank">WhatsApp Us Now</a>';
+                    break;
+                case 'ai-integration':
+                    modalTitle.textContent = 'AI Integration 🤖';
+                    modalDescription.textContent = 'Harness the power of artificial intelligence for your business. We develop and integrate AI solutions that can automate processes, provide insights, and enhance decision-making.';
+                    modalButtons.innerHTML = '<a href="https://wa.me/1234567890" class="btn" target="_blank">WhatsApp Us Now</a>';
+                    break;
+                case 'cybersecurity':
+                    modalTitle.textContent = 'Cybersecurity 🛡️';
+                    modalDescription.textContent = 'Protect your digital assets with our comprehensive cybersecurity solutions. We offer threat detection, prevention, and response services to keep your business safe from cyber threats.';
+                    modalButtons.innerHTML = '<a href="https://wa.me/1234567890" class="btn" target="_blank">WhatsApp Us Now</a>';
+                    break;
+                case 'data-analytics':
+                    modalTitle.textContent = 'Data Analytics 📊';
+                    modalDescription.textContent = 'Turn your data into actionable insights. Our data analytics services help you make informed decisions by providing deep insights into your business operations and customer behavior.';
+                    modalButtons.innerHTML = '<a href="https://wa.me/1234567890" class="btn" target="_blank">WhatsApp Us Now</a>';
+                    break;
+                case 'testimonial1':
+                    modalTitle.textContent = 'TechGiant Corp Success Story';
+                    modalDescription.textContent = 'Jetweb Labs transformed our operations with their cutting-edge AI solutions. Our productivity increased by 40% within the first quarter of implementation. Their teams expertise and support were invaluable throughout the process.';
+                    modalButtons.innerHTML = '<a href="#" class="btn">View Live Website</a> <a href="#" class="btn">View on GitHub</a>';
+                    break;
+                case 'testimonial2':
+                    modalTitle.textContent = 'InnovateTech Solutions Experience';
+                    modalDescription.textContent = 'The AI integration provided by Jetweb Labs was a game-changer for our business. It allowed us to automate complex processes and gain insights we never thought possible. Our decision-making is now faster and more accurate than ever.';
+                    modalButtons.innerHTML = '<a href="#" class="btn">View Live Website</a> <a href="#" class="btn">View on GitHub</a>';
+                    break;
+                case 'testimonial3':
+                    modalTitle.textContent = 'FutureFin Ltd Transformation';
+                    modalDescription.textContent = 'Jetweb Labs executed our cloud migration flawlessly. The transition was smooth, with zero downtime, and the new infrastructure has significantly improved our systems performance and reliability. Their teams expertise in cloud solutions is unmatched.';
+                    modalButtons.innerHTML = '<a href="#" class="btn">View Live Website</a> <a href="#" class="btn">View on GitHub</a>';
+                    break;
+            }
+        }
+
+        closeBtn.onclick = function() {
+            modal.style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // View All Technologies
+        const viewAllTechBtn = document.getElementById('view-all-tech');
+        const hiddenTech = document.querySelectorAll('.hidden-tech');
+
+        viewAllTechBtn.addEventListener('click', function() {
+            hiddenTech.forEach(tech => {
+                tech.style.display = tech.style.display === 'none' ? 'block' : 'none';
+            });
+            this.textContent = this.textContent === 'View All Technologies' ? 'Hide Technologies' : 'View All Technologies';
+        });
+    </script>
+</body>
+</html>
