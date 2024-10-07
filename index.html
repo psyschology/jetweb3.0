@@ -58,6 +58,10 @@
             left: 0;
             right: 0;
             z-index: 1000;
+            transition: background-color 0.3s ease;
+        }
+
+        header.scrolled {
             background: rgba(0, 0, 0, 0.8);
             backdrop-filter: blur(10px);
         }
@@ -179,7 +183,7 @@
 
         .services, .technologies {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
         }
 
@@ -363,6 +367,21 @@
             cursor: pointer;
         }
 
+        .social-links {
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: var(--text-color);
+            font-size: 1.5rem;
+            margin: 0 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-color);
+        }
+
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 2.5rem;
@@ -373,7 +392,15 @@
             }
 
             .services, .technologies {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: 1fr;
+            }
+
+            .testimonials {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-form {
+                width: 90%;
             }
         }
 
@@ -612,11 +639,17 @@
         <footer>
             <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Designer%20(2)-j269MHduOgkFipCDISdlCrodAU2qSC.png" alt="Jetweb Labs Logo" class="footer-logo">
             <p>&copy; 2024 Jetweb Labs. Innovating for a brighter future. 🌠</p>
-            <img src="/placeholder.svg" alt="Jetweb Labs Social Preview" class="social-preview">
+            <p>Contact: +91 8240620015 | support@jetweb.in</a></p>
+            <div class="social-links">
+                <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://github.com/psyschology" target="_blank"><i class="fab fa-github"></i></a>
+            </div>
         </footer>
 
         <button id="mode-toggle">🌓</button>
-        <a href="https://wa.me/1234567890" class="whatsapp-btn" target="_blank">
+        <a href="https://wa.me/918240620015" class="whatsapp-btn" target="_blank">
             <i class="fab fa-whatsapp"></i>
         </a>
 
@@ -655,7 +688,7 @@
             { x: 0, y: 0, scale: 1 },
             { 
                 x: () => -(window.innerWidth / 2 - headerLogo.offsetWidth / 2 - headerLogo.offsetLeft),
-                y: () => -(window.innerHeight / 2 - headerLogo.offsetHeight / 2 - headerLogo.offsetTop),
+                y: () => -(window.innerHeight / 2 - headerLogo.offsetHeight / 2 - headerLogo.offsetTop) + 20, // Adjusted to move the logo slightly down
                 scale: 0.6,
                 duration: 1,
                 delay: 3,
@@ -693,6 +726,16 @@
             });
         });
 
+        // Navbar color change on scroll
+        const header = document.querySelector('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
         // Dark/Light mode toggle
         const modeToggle = document.getElementById('mode-toggle');
         modeToggle.addEventListener('click', () => {
@@ -714,42 +757,42 @@
                 case 'app-dev':
                     modalTitle.textContent = 'App Development 📱';
                     modalDescription.textContent = 'We create cutting-edge mobile applications for iOS and Android platforms. Our team of expert developers ensures your app is not just functional, but also user-friendly and scalable.';
-                    modalButtons.innerHTML = '<a href="https://wa.me/1234567890" class="btn" target="_blank">WhatsApp Us Now</a>';
+                    modalButtons.innerHTML = '<a href="https://wa.me/8240620015" class="btn" target="_blank">WhatsApp Us Now</a>';
                     break;
                 case 'web-dev':
                     modalTitle.textContent = 'Web Development 💻';
                     modalDescription.textContent = 'From responsive websites to complex web applications, we deliver solutions that are both visually appealing and highly functional. We use the latest technologies to ensure your web presence stands out.';
-                    modalButtons.innerHTML = '<a href="https://wa.me/1234567890" class="btn" target="_blank">WhatsApp Us Now</a>';
+                    modalButtons.innerHTML = '<a href="https://wa.me/8240620015" class="btn" target="_blank">WhatsApp Us Now</a>';
                     break;
                 case 'digital-marketing':
                     modalTitle.textContent = 'Digital Marketing 📈';
                     modalDescription.textContent = 'Our digital marketing strategies are designed to boost your online presence and drive results. We offer SEO, content marketing, social media management, and PPC campaigns tailored to your business goals.';
-                    modalButtons.innerHTML = '<a href="https://wa.me/1234567890" class="btn" target="_blank">WhatsApp Us Now</a>';
+                    modalButtons.innerHTML = '<a href="https://wa.me/8240620015" class="btn" target="_blank">WhatsApp Us Now</a>';
                     break;
                 case 'it-consulting':
                     modalTitle.textContent = 'IT Consulting 🤝';
                     modalDescription.textContent = 'Our IT consulting services provide expert guidance on technology decisions. We help you align your IT strategy with your business objectives, ensuring you stay ahead in the digital landscape.';
-                    modalButtons.innerHTML = '<a href="https://wa.me/1234567890" class="btn" target="_blank">WhatsApp Us Now</a>';
+                    modalButtons.innerHTML = '<a href="https://wa.me/8240620015" class="btn" target="_blank">WhatsApp Us Now</a>';
                     break;
                 case 'cloud-solutions':
                     modalTitle.textContent = 'Cloud Solutions ☁️';
                     modalDescription.textContent = 'We offer scalable and secure cloud infrastructure solutions. Whether you are looking to migrate to the cloud or optimize your existing cloud setup, we have got you covered.';
-                    modalButtons.innerHTML = '<a href="https://wa.me/1234567890" class="btn" target="_blank">WhatsApp Us Now</a>';
+                    modalButtons.innerHTML = '<a href="https://wa.me/8240620015" class="btn" target="_blank">WhatsApp Us Now</a>';
                     break;
                 case 'ai-integration':
                     modalTitle.textContent = 'AI Integration 🤖';
                     modalDescription.textContent = 'Harness the power of artificial intelligence for your business. We develop and integrate AI solutions that can automate processes, provide insights, and enhance decision-making.';
-                    modalButtons.innerHTML = '<a href="https://wa.me/1234567890" class="btn" target="_blank">WhatsApp Us Now</a>';
+                    modalButtons.innerHTML = '<a href="https://wa.me/8240620015" class="btn" target="_blank">WhatsApp Us Now</a>';
                     break;
                 case 'cybersecurity':
                     modalTitle.textContent = 'Cybersecurity 🛡️';
                     modalDescription.textContent = 'Protect your digital assets with our comprehensive cybersecurity solutions. We offer threat detection, prevention, and response services to keep your business safe from cyber threats.';
-                    modalButtons.innerHTML = '<a href="https://wa.me/1234567890" class="btn" target="_blank">WhatsApp Us Now</a>';
+                    modalButtons.innerHTML = '<a href="https://wa.me/8240620015" class="btn" target="_blank">WhatsApp Us Now</a>';
                     break;
                 case 'data-analytics':
                     modalTitle.textContent = 'Data Analytics 📊';
                     modalDescription.textContent = 'Turn your data into actionable insights. Our data analytics services help you make informed decisions by providing deep insights into your business operations and customer behavior.';
-                    modalButtons.innerHTML = '<a href="https://wa.me/1234567890" class="btn" target="_blank">WhatsApp Us Now</a>';
+                    modalButtons.innerHTML = '<a href="https://wa.me/8240620015" class="btn" target="_blank">WhatsApp Us Now</a>';
                     break;
                 case 'testimonial1':
                     modalTitle.textContent = 'TechGiant Corp Success Story';
@@ -779,16 +822,22 @@
             }
         }
 
-        // View All Technologies
-        const viewAllTechBtn = document.getElementById('view-all-tech');
-        const hiddenTech = document.querySelectorAll('.hidden-tech');
+// View All Technologies
+const viewAllTechBtn = document.getElementById('view-all-tech');
+const hiddenTech = document.querySelectorAll('.hidden-tech');
 
-        viewAllTechBtn.addEventListener('click', function() {
-            hiddenTech.forEach(tech => {
-                tech.style.display = tech.style.display === 'none' ? 'block' : 'none';
-            });
-            this.textContent = this.textContent === 'View All Technologies' ? 'Hide Technologies' : 'View All Technologies';
-        });
+// Initially hide the hidden technologies
+hiddenTech.forEach(tech => {
+    tech.style.display = 'none';
+});
+
+viewAllTechBtn.addEventListener('click', function() {
+    hiddenTech.forEach(tech => {
+        tech.style.display = tech.style.display === 'none' ? 'block' : 'none';
+    });
+    this.textContent = this.textContent === 'View All Technologies' ? 'Hide Technologies' : 'View All Technologies';
+});
+
     </script>
 </body>
 </html>
