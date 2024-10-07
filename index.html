@@ -114,6 +114,7 @@
         position: absolute;
         top: 60px; /* Adjust based on header height */
         left: 0;
+        padding: 20px 0; /* Add padding for the menu to push items down */
     }
 
     ul.active {
@@ -125,16 +126,26 @@
     }
 
     /* Center each menu item */
+   /* Center each menu item */
     ul li {
         margin: 10px 0; /* Space items vertically */
+        background: rgba(255, 255, 255, 0.1); /* Background for items */
+        border-radius: 5px; /* Rounded corners for a softer look */
+        width: 80%; /* Control the width of the items */
+        text-align: center; /* Center text */
     }
 
     ul li a {
         color: white;
         text-decoration: none;
-        text-align: center; /* Center text */
-        padding: 10px 20px; /* Add some padding for clickable area */
+        padding: 15px; /* Add padding for clickable area */
         display: block; /* Make the link a block element */
+        transition: background 0.3s; /* Smooth background transition */
+    }
+
+    /* Optional: Hover effect */
+    ul li a:hover {
+        background: rgba(255, 255, 255, 0.2); /* Highlight on hover */
     }
 }
         .hero {
@@ -154,7 +165,6 @@
             left: 50%;
             right: 0;
             bottom: 0;
-            background: url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Designer%20(2)-j269MHduOgkFipCDISdlCrodAU2qSC.png') no-repeat center center/cover;
             opacity: 0.2;
             transform: translate(-50%, -50%) scale(1);
             width: 100%;
