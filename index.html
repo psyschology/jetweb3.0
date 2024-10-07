@@ -100,37 +100,40 @@
         }
 /* Hamburger menu styles */
 .hamburger {
-    display: none;
+    display: none; /* Hide by default for larger screens */
     font-size: 30px;
     cursor: pointer;
 }
 
 /* Media query for mobile view */
 @media (max-width: 768px) {
+    .hamburger {
+        display: block; /* Show hamburger icon on mobile */
+    }
+
+    nav {
+        position: absolute; /* Position it absolutely */
+        top: 60px; /* Adjust based on header height */
+        right: 0; /* Align it to the right */
+        width: 100%; /* Full width for dropdown */
+        z-index: 1000; /* Ensure it appears above other elements */
+    }
+
     ul {
         display: none; /* Hide the menu by default */
         flex-direction: column;
-        width: 100%;
-        position: absolute;
-        top: 60px; /* Adjust based on header height */
-        left: 0;
-        padding: 20px 0; /* Add padding for the menu to push items down */
+        align-items: center; /* Center items */
+        padding: 20px 0; /* Add padding for the menu */
     }
 
     ul.active {
         display: flex; /* Show menu when active */
     }
 
-    .hamburger {
-        display: block; /* Show hamburger icon */
-    }
-
-    /* Center each menu item */
-   /* Center each menu item */
     ul li {
         margin: 10px 0; /* Space items vertically */
         background: rgba(255, 255, 255, 0.1); /* Background for items */
-        border-radius: 5px; /* Rounded corners for a softer look */
+        border-radius: 5px; /* Rounded corners */
         width: 80%; /* Control the width of the items */
         text-align: center; /* Center text */
     }
