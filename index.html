@@ -112,11 +112,8 @@
         flex-direction: column;
         width: 100%;
         position: absolute;
-        background: rgba(51, 51, 51, 0.9); /* Popup background */
         top: 60px; /* Adjust based on header height */
         left: 0;
-        z-index: 1000; /* Ensure the menu appears above other elements */
-        padding: 10px 0; /* Add padding to the menu */
     }
 
     ul.active {
@@ -125,14 +122,10 @@
 
     .hamburger {
         display: block; /* Show hamburger icon */
-        margin-left: auto; /* Push hamburger to the right */
     }
 
-    /* Override default flex styles on mobile */
-    nav {
-        flex-direction: row; /* Keep items in a row */
-        justify-content: space-between;
-        position: relative;
+    ul {
+        display: flex; /* Show links in a row on wider screens */
     }
 }
         .hero {
@@ -459,19 +452,54 @@
         }
 
         .opening-logo {
-            width: 200px;
-            height: auto;
-            opacity: 0;
-            transform: translateY(50px);
-        }
+    width: 200px;
+    height: auto;
+    opacity: 1; /* Start fully visible */
+    transform: translateY(0); /* Start at the center */
+    animation: logoFadeOutUp 2s forwards; /* Call the animation */
+}
 
-        .opening-text {
-            font-size: 2rem;
-            color: var(--text-color);
-            text-align: center;
-            opacity: 0;
-            transform: translateY(20px);
-        }
+/* Keyframes for the logo fade-out and upward movement */
+@keyframes logoFadeOutUp {
+    0% {
+        opacity: 1;
+        transform: translateY(0); /* Start at the center */
+    }
+    70% {
+        opacity: 0.3; /* Fade out to 30% opacity */
+        transform: translateY(-15px); /* Move up slightly */
+    }
+    100% {
+        opacity: 0; /* Fully transparent */
+        transform: translateY(-50px); /* Move further up */
+    }
+}
+
+.opening-text {
+    font-size: 2rem;
+    color: var(--text-color);
+    text-align: center;
+    opacity: 1; /* Start fully visible */
+    transform: translateY(0); /* Start at the center */
+    animation: textFadeOutUp 2s 0.5s forwards; /* Delay the animation slightly */
+}
+
+/* Keyframes for the text fade-out and upward movement */
+@keyframes textFadeOutUp {
+    0% {
+        opacity: 1;
+        transform: translateY(0); /* Start at the center */
+    }
+    70% {
+        opacity: 0.5; /* Fade out to 50% opacity */
+        transform: translateY(-10px); /* Move up slightly */
+    }
+    100% {
+        opacity: 0; /* Fully transparent */
+        transform: translateY(-40px); /* Move further up */
+    }
+}
+
 
         .content-wrapper {
             opacity: 0;
@@ -510,8 +538,9 @@
             <nav>
                 <div class="logo-container">
                     <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Designer%20(2)-j269MHduOgkFipCDISdlCrodAU2qSC.png" alt="Jetweb Labs Logo" class="logo">
-                    <div class="hamburger" id="hamburger">&#9776;</div>
                 </div>
+                    <div class="hamburger" id="hamburger">&#9776;</div>
+                
                 <ul id="nav-links">
                     <li><a href="#home">Home</a></li>
                     <li><a href="#about">About</a></li>
