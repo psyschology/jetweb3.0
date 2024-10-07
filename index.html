@@ -67,6 +67,7 @@
         }
 
         nav {
+            position: relative;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -97,7 +98,36 @@
         nav ul li a:hover {
             color: var(--accent-color);
         }
+/* Hamburger menu styles */
+.hamburger {
+    display: none;
+    font-size: 30px;
+    cursor: pointer;
+}
 
+/* Media query for mobile view */
+@media (max-width: 768px) {
+    ul {
+        display: none; /* Hide the menu by default */
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 60px; /* Adjust based on header height */
+        left: 0;
+    }
+
+    ul.active {
+        display: flex; /* Show menu when active */
+    }
+
+    .hamburger {
+        display: block; /* Show hamburger icon */
+    }
+
+    ul {
+        display: flex; /* Show links in a row on wider screens */
+    }
+}
         .hero {
             height: 100vh;
             display: flex;
@@ -115,6 +145,7 @@
             left: 50%;
             right: 0;
             bottom: 0;
+            background: url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Designer%20(2)-j269MHduOgkFipCDISdlCrodAU2qSC.png') no-repeat center center/cover;
             opacity: 0.2;
             transform: translate(-50%, -50%) scale(1);
             width: 100%;
@@ -470,8 +501,11 @@
     <div class="content-wrapper">
         <header>
             <nav>
-                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Designer%20(2)-j269MHduOgkFipCDISdlCrodAU2qSC.png" alt="Jetweb Labs Logo" class="logo">
-                <ul>
+                <div class="logo-container">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Designer%20(2)-j269MHduOgkFipCDISdlCrodAU2qSC.png" alt="Jetweb Labs Logo" class="logo">
+                    <div class="hamburger" id="hamburger">&#9776;</div>
+                </div>
+                <ul id="nav-links">
                     <li><a href="#home">Home</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#services">Services</a></li>
@@ -481,7 +515,7 @@
                 </ul>
             </nav>
         </header>
-
+        
         <main>
             <section id="home" class="hero parallax-section">
                 <div class="parallax-bg"></div>
@@ -835,6 +869,18 @@ viewAllTechBtn.addEventListener('click', function() {
         tech.style.display = tech.style.display === 'none' ? 'block' : 'none';
     });
     this.textContent = this.textContent === 'View All Technologies' ? 'Hide Technologies' : 'View All Technologies';
+});
+
+
+
+
+
+// Mobile Navigation Toggle
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('nav-links');
+
+hamburger.addEventListener('click', function() {
+    navLinks.classList.toggle('active'); // Toggle the 'active' class to show/hide the menu
 });
 
     </script>
